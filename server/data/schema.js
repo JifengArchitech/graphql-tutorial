@@ -1,10 +1,11 @@
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
+import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
 import resolvers from './resolvers'
 
 const typeDefs = `
 type Query {
   person(name: String): Person
   allPersons: [Person]
+  getFortuneCookie: String
 }
 
 type Person {
@@ -16,9 +17,14 @@ type Person {
 type Post {
   title: String!
   author: Person
+  views: Int
 }
-`;
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+type FortuneCookie {
+  name: String!
+}
+`
 
-export default schema;
+const schema = makeExecutableSchema({ typeDefs, resolvers })
+
+export default schema

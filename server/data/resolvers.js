@@ -1,4 +1,5 @@
-import { Person } from './connectors'
+import { Person, Post } from './connectors/sqlite'
+import FortuneCookie from './connectors/api'
 
 const resolvers = {
   Query: {
@@ -7,6 +8,9 @@ const resolvers = {
     },
     allPersons(_, args) {
       return Person.findAll()
+    },
+    getFortuneCookie() {
+      return FortuneCookie.getOne()
     }
   },
   Person: {
@@ -19,6 +23,6 @@ const resolvers = {
       return post.getPerson()
     }
   }
-};
+}
 
 export default resolvers
