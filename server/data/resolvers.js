@@ -22,6 +22,14 @@ const resolvers = {
     author(post) {
       return post.getPerson()
     }
+  },
+  Mutation: {
+      addPerson(_, args) {
+          return Person.create(args.input)
+      },
+      deletePerson(_, args) {
+          return Person.destroy({where:args})
+      }
   }
 }
 

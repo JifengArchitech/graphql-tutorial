@@ -9,9 +9,15 @@ type Query {
 }
 
 type Person {
+  id: ID!
   name: String!
   address: String!
   posts: [Post]
+}
+
+input PersonInput {
+    name: String
+    address: String
 }
 
 type Post {
@@ -20,10 +26,16 @@ type Post {
   views: Int
 }
 
+
+type Mutation {
+    addPerson(input: PersonInput): Person
+    deletePerson(id: ID!): String
+}
+
 type FortuneCookie {
   name: String!
 }
-`
+`;
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
